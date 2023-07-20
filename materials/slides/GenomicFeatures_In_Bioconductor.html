@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>GenomicFeatures_In_Bioconductor.knit</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Rockefeller University, Bioinformatics Resource Centre" />
+    <script src="libs/header-attrs-2.9/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="metropolisCustom.css" type="text/css" />
+    <link rel="stylesheet" href="metropolis-fontsCustom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Genomic Features In Bioconductor
+<html>
+<div style="float:left">
+
+</div>
+<hr color='#EB811B' size=1px width=796px>
+</html>
+### Rockefeller University, Bioinformatics Resource Centre
+### <a href="http://rockefelleruniversity.github.io/Bioconductor_Introduction/" class="uri">http://rockefelleruniversity.github.io/Bioconductor_Introduction/</a>
+
+---
+
+
+
+
+
+
+class: inverse, center, middle
+
+# Genomic Features
+
+&lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=720px&gt;&lt;/html&gt; 
+
+---
+
+
+
+## Genomic Features
+
+Genomic Features are often stored as GTF or GFF files.
+
+&lt;div align="center"&gt;
+&lt;img src="imgs/gff.png" alt="igv" height="200" width="600"&gt;
+&lt;/div&gt;
+
+---
+## Genes as Genomic Features
+
+In particular, we often find gene models as GFF or GTF files.
+
+This importantly allows us to associate:
+
+* Exons with transcripts.
+* Transcripts with genes.
+
+With this mapping we can perform complex operations such as summarising genome wide RNAseq signal to genes/transcripts expressions.  
+
+---
+## IGV and GFF/GTF
+
+We use GFF and GTF in IGV to display gene models. 
+
+
+
+&lt;div align="center"&gt;
+&lt;img src="imgs/fullGenes.png" height="460" width="800"&gt;
+&lt;/div&gt;
+
+---
+## A Single Gene Model in GTF Format
+
+GTF is perhaps the most common format for gene models. 
+
+In this example we have a GTF file containing a single gene model for the **Xkr4** gene.
+
+This can be found in **data/Xkr4.gtf**
+
+&lt;div align="center"&gt;
+&lt;img src="imgs/gtfInTerminal.png" height="138" width="800"&gt;
+&lt;/div&gt;
+---
+## A Single Gene Model in IGV
+
+IGV parses information from the GTF file to construct the gene model we see containing untranslated regions and directionality of expression.
+
+&lt;div align="center"&gt;
+&lt;img src="imgs/gtfInIGV.png" height="500" width="800"&gt;
+&lt;/div&gt;
+
+---
+## Genomic Features in Bioconductor
+
+In Bioconductor, gene models are prepackaged for us in the **TxDb** packages.
+
+Format is TxDb. **species** . **source** . **major version** . **table**
+
+Homo Sapiens gene build from UCSC's version hg19 known gene table - TxDb.Hsapiens.UCSC.hg19.knownGene
+
+&lt;div align="center"&gt;
+&lt;img src="imgs/txdb.png" alt="igv" height="400" width="400"&gt;
+&lt;/div&gt;
+
+
+---
+## Genomic Features in Bioconductor
+
+We can however make use of GTF/GFF files of our own gene models outside of Bioconductor pre-built TxDB packages.
+
+The **GenomicFeatures** package has functions to import a GTF/GFF into a Bioconductor **TxDb** object as well as to interact with **TxDb** objects.
+
+- [**GenomicFeatures**](https://bioconductor.org/packages/release/bioc/html/GenomicFeatures.html) - Import to and handling of **TxDB** objects in R.
+
+---
+## Genomic Features in Bioconductor
+
+The first package we will look at is the **TxDB** package - **TxDb.Hsapiens.UCSC.hg19.knownGene**.
+
+Remember we can install Bioconductor packages (fairly) easily  using Bioconductor package pages' provided commands. 
+
+
+```r
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("TxDb.Hsapiens.UCSC.hg19.knownGene")
+```
+
+---
+## Genomic Intervals in Bioconductor
+
+Now we have the package installed, we can load the library.
+
+
+
+
+```r
+library(TxDb.Hsapiens.UCSC.hg19.knownGene)
+```
+
+---
+## TxDb
+
+Once we have loaded the **TxDb.Hsapiens.UCSC.hg19.knownGene** library, we will have a new **TxDb** object available to us called **TxDb.Hsapiens.UCSC.hg19.knownGene**.
+
+
+```r
+class(TxDb.Hsapiens.UCSC.hg19.knownGene)
+```
+
+```
+## [1] "TxDb"
+## attr(,"package")
+## [1] "GenomicFeatures"
+```
+---
+## TxDb
+
+When this variable name is typed in into console we can retrieve some key information on the Gene Model build as well as summary metrics.
+
+
+```r
+TxDb.Hsapiens.UCSC.hg19.knownGene
+```
+
+```
+## TxDb object:
+## # Db type: TxDb
+## # Supporting package: GenomicFeatures
+## # Data source: UCSC
+## # Genome: hg19
+## # Organism: Homo sapiens
+## # Taxonomy ID: 9606
+## # UCSC Table: knownGene
+## # Resource URL: http://genome.ucsc.edu/
+## # Type of Gene ID: Entrez Gene ID
+## # Full dataset: yes
+## # miRBase build ID: GRCh37
+## # transcript_nrow: 82960
+## # exon_nrow: 289969
+## # cds_nrow: 237533
+## # Db created by: GenomicFeatures package from Bioconductor
+## # Creation time: 2015-10-07 18:11:28 +0000 (Wed, 07 Oct 2015)
+## # GenomicFeatures version at creation time: 1.21.30
+## # RSQLite version at creation time: 1.0.0
+## # DBSCHEMAVERSION: 1.1
+```
+
+---
+## Accessing Information
+
+As suggested in the name, **TxDb** objects are a database containing information we would store in GTF/GFF files.
+
+To access information in our **TxDb** object we will need to use special accessor functions.
+
+These accessors return information in **GRanges'** formats allowing us to work with methods from the **GenomicRanges** packages.
+
+---
+# Extracting Genomic Locations
+
+We have a number of functions which allow us to extract GRanges for our features of interest including:
+
+* **genes()** - Extract gene locations as a **GRanges**.
+* **transcripts()** - Extract transcript locations  as a **GRanges**.
+* **exons()** - Extract exon locations  as a **GRanges**.
+* **cds()** - Extract coding locations  as a **GRanges**.
+* **promoters()** - Extract promoter locations  as a **GRanges**.
+
+
+---
+## Extracting Genes
+
+We can extract genes with the **genes()** function and the **TxDb** object as a parameter.
+
+
+```r
+myGenes &lt;- genes(TxDb.Hsapiens.UCSC.hg19.knownGene)
+```
+
+```
+##   403 genes were dropped because they have exons located on both strands
+##   of the same reference sequence or on more than one reference sequence,
+##   so cannot be represented by a single genomic range.
+##   Use 'single.strand.genes.only=FALSE' to get all the genes in a
+##   GRangesList object, or use suppressMessages() to suppress this message.
+```
+
+```r
+myGenes
+```
+
+```
+## GRanges object with 23056 ranges and 1 metadata column:
+##         seqnames              ranges strand |     gene_id
+##            &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; | &lt;character&gt;
+##       1    chr19   58858172-58874214      - |           1
+##      10     chr8   18248755-18258723      + |          10
+##     100    chr20   43248163-43280376      - |         100
+##    1000    chr18   25530930-25757445      - |        1000
+##   10000     chr1 243651535-244006886      - |       10000
+##     ...      ...                 ...    ... .         ...
+##    9991     chr9 114979995-115095944      - |        9991
+##    9992    chr21   35736323-35743440      + |        9992
+##    9993    chr22   19023795-19109967      - |        9993
+##    9994     chr6   90539619-90584155      + |        9994
+##    9997    chr22   50961997-50964905      - |        9997
+##   -------
+##   seqinfo: 93 sequences (1 circular) from hg19 genome
+```
+---
+## Extracting Exons
+
+We can extract exons with the **exons()** function and the **TxDb** object as a parameter in the same way.
+
+
+```r
+myExons &lt;- exons(TxDb.Hsapiens.UCSC.hg19.knownGene)
+myExons
+```
+
+```
+## GRanges object with 289969 ranges and 1 metadata column:
+##                  seqnames      ranges strand |   exon_id
+##                     &lt;Rle&gt;   &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt;
+##        [1]           chr1 11874-12227      + |         1
+##        [2]           chr1 12595-12721      + |         2
+##        [3]           chr1 12613-12721      + |         3
+##        [4]           chr1 12646-12697      + |         4
+##        [5]           chr1 13221-14409      + |         5
+##        ...            ...         ...    ... .       ...
+##   [289965] chrUn_gl000241 35706-35859      - |    289965
+##   [289966] chrUn_gl000241 36711-36875      - |    289966
+##   [289967] chrUn_gl000243 11501-11530      + |    289967
+##   [289968] chrUn_gl000243 13608-13637      + |    289968
+##   [289969] chrUn_gl000247   5787-5816      - |    289969
+##   -------
+##   seqinfo: 93 sequences (1 circular) from hg19 genome
+```
+---
+## Extracting Transcripts
+
+We can extract transcripts with the **transcripts()** functions and the **TxDb** object as a parameter.
+
+
+```r
+myTranscripts &lt;- transcripts(TxDb.Hsapiens.UCSC.hg19.knownGene)
+myTranscripts
+```
+
+```
+## GRanges object with 82960 ranges and 2 metadata columns:
+##                 seqnames        ranges strand |     tx_id     tx_name
+##                    &lt;Rle&gt;     &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt; &lt;character&gt;
+##       [1]           chr1   11874-14409      + |         1  uc001aaa.3
+##       [2]           chr1   11874-14409      + |         2  uc010nxq.1
+##       [3]           chr1   11874-14409      + |         3  uc010nxr.1
+##       [4]           chr1   69091-70008      + |         4  uc001aal.1
+##       [5]           chr1 321084-321115      + |         5  uc001aaq.2
+##       ...            ...           ...    ... .       ...         ...
+##   [82956] chrUn_gl000237        1-2686      - |     82956  uc011mgu.1
+##   [82957] chrUn_gl000241   20433-36875      - |     82957  uc011mgv.2
+##   [82958] chrUn_gl000243   11501-11530      + |     82958  uc011mgw.1
+##   [82959] chrUn_gl000243   13608-13637      + |     82959  uc022brq.1
+##   [82960] chrUn_gl000247     5787-5816      - |     82960  uc022brr.1
+##   -------
+##   seqinfo: 93 sequences (1 circular) from hg19 genome
+```
+---
+## Extracting Coding Regions
+
+We can extract coding regions with the **cds()** functions and the **TxDb** object as a parameter.
+
+
+```r
+myCDS &lt;- cds(TxDb.Hsapiens.UCSC.hg19.knownGene)
+myCDS
+```
+
+```
+## GRanges object with 237533 ranges and 1 metadata column:
+##                  seqnames        ranges strand |    cds_id
+##                     &lt;Rle&gt;     &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt;
+##        [1]           chr1   12190-12227      + |         1
+##        [2]           chr1   12595-12721      + |         2
+##        [3]           chr1   13403-13639      + |         3
+##        [4]           chr1   69091-70008      + |         4
+##        [5]           chr1 324343-324345      + |         5
+##        ...            ...           ...    ... .       ...
+##   [237529] chrUn_gl000228   30530-31035      - |    237529
+##   [237530] chrUn_gl000228   31353-31430      - |    237530
+##   [237531] chrUn_gl000228   31660-31734      - |    237531
+##   [237532] chrUn_gl000228   31660-31737      - |    237532
+##   [237533] chrUn_gl000228   31996-32173      - |    237533
+##   -------
+##   seqinfo: 93 sequences (1 circular) from hg19 genome
+```
+
+---
+## Extracting Additional Information
+
+We can control which additional information such as transcript ID and gene ID we retrieve in metadata columns using the **columns** parameter in the **exons()/transcripts()/cds()** functions. 
+
+For a full list of available columns see **?transcripts()** function help.
+
+
+```r
+myTranscripts &lt;- transcripts(TxDb.Hsapiens.UCSC.hg19.knownGene, 
+                             columns=c("gene_id","tx_id"))
+myTranscripts[1:2]
+```
+
+```
+## GRanges object with 2 ranges and 2 metadata columns:
+##       seqnames      ranges strand |         gene_id     tx_id
+##          &lt;Rle&gt;   &lt;IRanges&gt;  &lt;Rle&gt; | &lt;CharacterList&gt; &lt;integer&gt;
+##   [1]     chr1 11874-14409      + |       100287102         1
+##   [2]     chr1 11874-14409      + |       100287102         2
+##   -------
+##   seqinfo: 93 sequences (1 circular) from hg19 genome
+```
+
+---
+## Extracting Promoter Regions
+
+Another useful function is the **promoters()** function.
+
+This accepts additional parameters of **upstream** and **downstream** to specify regions around TSS to be used as a promoter while accounting for a transcripts's strand.
+
+We have been using the **resize()** function with **GRanges** objects for the same purpose.
+
+
+```r
+myPromoters &lt;- promoters(TxDb.Hsapiens.UCSC.hg19.knownGene, 
+                             upstream=2000,downstream=50)
+myPromoters[1:2]
+```
+
+```
+## GRanges object with 2 ranges and 2 metadata columns:
+##              seqnames     ranges strand |     tx_id     tx_name
+##                 &lt;Rle&gt;  &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt; &lt;character&gt;
+##   uc001aaa.3     chr1 9874-11923      + |         1  uc001aaa.3
+##   uc010nxq.1     chr1 9874-11923      + |         2  uc010nxq.1
+##   -------
+##   seqinfo: 93 sequences (1 circular) from hg19 genome
+```
+
+---
+## Extracting Groups of Genomic Features
+
+A major component of gene models in GFF and GTF files is the grouping of exons to transcripts/genes and transcripts to genes.
+
+We can extract lists of GRanges (a GRangesList) containing the grouping of features to metafeatures using additional accessor functions.
+
+These include the **transcriptsBy()**, **exonsBy()** and **cdsBy()**.
+
+
+---
+## Extracting Groups of Genomic Features
+
+The **transcriptsBy()** function takes as argument a **TxDb** object and a **by** argument specifying the metafeature/feature to group by.
+
+For the **transcriptsBy()**, the **by** argument may be gene, exon or cds.
+
+
+```r
+transcriptByGenes &lt;- transcriptsBy(TxDb.Hsapiens.UCSC.hg19.knownGene, 
+                                   by="gene")
+transcriptByGenes[1:2]
+```
+
+```
+## GRangesList object of length 2:
+## $`1`
+## GRanges object with 2 ranges and 2 metadata columns:
+##       seqnames            ranges strand |     tx_id     tx_name
+##          &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt; &lt;character&gt;
+##   [1]    chr19 58858172-58864865      - |     70455  uc002qsd.4
+##   [2]    chr19 58859832-58874214      - |     70456  uc002qsf.2
+##   -------
+##   seqinfo: 93 sequences (1 circular) from hg19 genome
+## 
+## $`10`
+## GRanges object with 1 range and 2 metadata columns:
+##       seqnames            ranges strand |     tx_id     tx_name
+##          &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt; &lt;character&gt;
+##   [1]     chr8 18248755-18258723      + |     31944  uc003wyw.1
+##   -------
+##   seqinfo: 93 sequences (1 circular) from hg19 genome
+```
+
+---
+## Extracting Groups of Genomic Features
+
+As with all lists we can extract information from elements in the GRangesList using the **$** and **[[]]** accessors.
+
+This will extract the grouped intervals as a GRanges.
+
+
+```r
+# transcriptByGenes$1 or
+transcriptByGenes[[1]]
+```
+
+```
+## GRanges object with 2 ranges and 2 metadata columns:
+##       seqnames            ranges strand |     tx_id     tx_name
+##          &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt; &lt;character&gt;
+##   [1]    chr19 58858172-58864865      - |     70455  uc002qsd.4
+##   [2]    chr19 58859832-58874214      - |     70456  uc002qsf.2
+##   -------
+##   seqinfo: 93 sequences (1 circular) from hg19 genome
+```
+
+---
+## Extracting Groups of Genomic Features
+
+Similarly the very useful **exonsBy()** function takes again an argument for a **TxDb** object and a **by** argument.
+
+For the **exonsBy()** and **cdsBy()** functions, the **by** argument may be gene, or transcript.
+
+
+```r
+exonsByTranscript &lt;- exonsBy(TxDb.Hsapiens.UCSC.hg19.knownGene, 
+                                   by="tx")
+exonsByTranscript[1:2]
+```
+
+```
+## GRangesList object of length 2:
+## $`1`
+## GRanges object with 3 ranges and 3 metadata columns:
+##       seqnames      ranges strand |   exon_id   exon_name exon_rank
+##          &lt;Rle&gt;   &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt; &lt;character&gt; &lt;integer&gt;
+##   [1]     chr1 11874-12227      + |         1        &lt;NA&gt;         1
+##   [2]     chr1 12613-12721      + |         3        &lt;NA&gt;         2
+##   [3]     chr1 13221-14409      + |         5        &lt;NA&gt;         3
+##   -------
+##   seqinfo: 93 sequences (1 circular) from hg19 genome
+## 
+## $`2`
+## GRanges object with 3 ranges and 3 metadata columns:
+##       seqnames      ranges strand |   exon_id   exon_name exon_rank
+##          &lt;Rle&gt;   &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt; &lt;character&gt; &lt;integer&gt;
+##   [1]     chr1 11874-12227      + |         1        &lt;NA&gt;         1
+##   [2]     chr1 12595-12721      + |         2        &lt;NA&gt;         2
+##   [3]     chr1 13403-14409      + |         6        &lt;NA&gt;         3
+##   -------
+##   seqinfo: 93 sequences (1 circular) from hg19 genome
+```
+
+
+---
+## Creating TxDb from External Sources
+
+Often we will have our favourite gene models stored in a GTF outside of Bioconductor objects. If we wish to take advantage of all the features in Bioconductor we will need to import it into a **TxDb** object.
+
+We can do this using the **makeTxDbFromGFF()** function which will parse GTF or GFF into a **TxDb** object
+
+```r
+myCustomTxDb &lt;- makeTxDbFromGFF("data/Xkr4.gtf")
+```
+
+```
+## Import genomic features from the file as a GRanges object ... OK
+## Prepare the 'metadata' data frame ... OK
+## Make the TxDb object ... OK
+```
+
+```r
+class(myCustomTxDb)
+```
+
+```
+## [1] "TxDb"
+## attr(,"package")
+## [1] "GenomicFeatures"
+```
+
+---
+## Creating TxDb from External Sources
+
+```r
+myCustomTxDb
+```
+
+```
+## TxDb object:
+## # Db type: TxDb
+## # Supporting package: GenomicFeatures
+## # Data source: data/Xkr4.gtf
+## # Organism: NA
+## # Taxonomy ID: NA
+## # miRBase build ID: NA
+## # Genome: NA
+## # Nb of transcripts: 1
+## # Db created by: GenomicFeatures package from Bioconductor
+## # Creation time: 2021-07-16 00:25:43 +0000 (Fri, 16 Jul 2021)
+## # GenomicFeatures version at creation time: 1.44.0
+## # RSQLite version at creation time: 2.2.7
+## # DBSCHEMAVERSION: 1.2
+```
+
+---
+## Creating TxDb from External Sources
+
+Now we have our own custom GTF object we can make use of the functions from **GenomicFeatures** package such as retrieving gene coordinates as a **GRanges**.
+
+
+```r
+genes(myCustomTxDb)
+```
+
+```
+## GRanges object with 1 range and 1 metadata column:
+##        seqnames          ranges strand |     gene_id
+##           &lt;Rle&gt;       &lt;IRanges&gt;  &lt;Rle&gt; | &lt;character&gt;
+##   Xkr4     chr1 3214482-3671498      - |        Xkr4
+##   -------
+##   seqinfo: 1 sequence from an unspecified genome; no seqlengths
+```
+---
+## Creating TxDb from External Sources
+
+Or exons grouped by genes as a **GRangesList**.
+
+
+
+```r
+exonsBy(myCustomTxDb,by="gene")
+```
+
+```
+## GRangesList object of length 1:
+## $Xkr4
+## GRanges object with 3 ranges and 2 metadata columns:
+##       seqnames          ranges strand |   exon_id   exon_name
+##          &lt;Rle&gt;       &lt;IRanges&gt;  &lt;Rle&gt; | &lt;integer&gt; &lt;character&gt;
+##   [1]     chr1 3214482-3216968      - |         1        &lt;NA&gt;
+##   [2]     chr1 3421702-3421901      - |         2        &lt;NA&gt;
+##   [3]     chr1 3670552-3671498      - |         3        &lt;NA&gt;
+##   -------
+##   seqinfo: 1 sequence from an unspecified genome; no seqlengths
+```
+---
+## Creating TxDb from UCSC
+
+We can create a TxDb directly from UCSC's database using the **makeTxDbFromUCSC()** function.
+
+The **makeTxDbFromUCSC** function simply requires a genome name to build a **TxDb** object. 
+
+We can review the genomes available to us using the **ucscGenomes()** function from the **rtracklayer** package. This returns a data frame of genomes from which we can build a TxDB object.
+
+
+
+```r
+library(rtracklayer)
+availableGenomes &lt;- ucscGenomes()
+availableGenomes[1:4,]
+```
+
+```
+##        db            species      date
+## 1 ailMel1              Panda Dec. 2009
+## 2 allMis1 American alligator Aug. 2012
+## 3 anoCar1             Lizard Feb. 2007
+## 4 anoCar2             Lizard  May 2010
+##                                                              name
+## 1                               BGI-Shenzhen AilMel 1.0 Dec. 2009
+## 2                 International Crocodilian Genomes Working Group
+## 3                                    Broad Institute AnoCar (1.0)
+## 4 Broad Institute of MIT and Harvard AnoCar 2.0 (GCA_000090745.1)
+```
+---
+## Creating TxDb from UCSC
+
+Once we have identified the genome build we wish to use we can specify the genome parameter in the **makeTxDbFromUCSC()** function.
+
+&lt;!-- # issue here atm. UCSC_dbselect command sets us rmariadb connection. maybe have to override this and change ports used?. For the moment i have just added a little work aorund by saving the object. --&gt;
+
+
+```r
+hg18TxDb &lt;- makeTxDbFromUCSC(genome="hg18")
+hg18TxDb
+```
+
+
+```
+## TxDb object:
+## # Db type: TxDb
+## # Supporting package: GenomicFeatures
+## # Data source: UCSC
+## # Genome: hg18
+## # Organism: Homo sapiens
+## # Taxonomy ID: 9606
+## # UCSC Table: knownGene
+## # UCSC Track: UCSC Genes
+## # Resource URL: http://genome.ucsc.edu/
+## # Type of Gene ID: Entrez Gene ID
+## # Full dataset: yes
+## # miRBase build ID: NA
+## # Nb of transcripts: 66803
+## # Db created by: GenomicFeatures package from Bioconductor
+## # Creation time: 2021-03-04 18:35:05 -0500 (Thu, 04 Mar 2021)
+## # GenomicFeatures version at creation time: 1.40.1
+## # RSQLite version at creation time: 2.2.3
+## # DBSCHEMAVERSION: 1.2
+```
+
+---
+## Creating TxDb from UCSC
+
+And again we can now make use of **GenomicFeatures** package's functions with our new TxDb objects
+
+
+```r
+hg18Promoters &lt;- promoters(hg18TxDb,2000,50)
+```
+---
+## Exporting a TxDb Object as GTF/GFF File
+
+We can make use of the **export.gff()** in the **rtracklayer** package to export our **TxDb** object to a gtf or gff file. We can include an additional argument of **format** to the **export.gff()** function.
+
+We can specify the **format** to be **gff** or **gtf** as shown below.
+
+
+```r
+export.gff(myCustomTxDb,con="customTxDbb.gff",format="gff")
+export.gff(myCustomTxDb,con="customTxDbb.gtf",format="gtf")
+```
+---
+## Useful Functions in GenomicFeatures
+
+We have seen that we can extract transcripts and exons grouped by their genes/transcripts using the **transcriptsBy()** and **exonsBy()** functions.
+
+To identify the total number of groups we can simply use the **length()** function. Here we have 23459 transcipts or groups of exons.
+
+
+```r
+transcriptByGenes &lt;- exonsBy(hg18TxDb,by="gene")
+length(transcriptByGenes)
+```
+
+```
+## [1] 20121
+```
+---
+## Useful Functions in GenomicFeatures
+
+To find the number of exons in every group/transcript we can use the function **lengths()**. The **lengths()** function will tell us the length of every group in our **GRangesList**
+
+
+```r
+transcriptNumberPerGene &lt;- lengths(transcriptByGenes)
+transcriptNumberPerGene[1:5]
+```
+
+```
+##     1    10   100  1000 10000 
+##    15     3    12    16    16
+```
+---
+## Useful Functions in GenomicFeatures
+
+We may wish to know the total sum length of all exons in every transcript. The **transcriptLengths()** function allows us to find all transcript lengths from a TxDb object as well as additional information.
+
+
+```r
+transcript_Lens &lt;- transcriptLengths(hg18TxDb)
+transcript_Lens[1:5,]
+```
+
+```
+##   tx_id    tx_name gene_id nexon tx_len
+## 1     1 uc001aaa.2    &lt;NA&gt;     3   2122
+## 2     2 uc009vip.1    &lt;NA&gt;     2   2772
+## 3     3 uc009vjg.1    &lt;NA&gt;     3    708
+## 4     4 uc009vjh.1   79501     3    888
+## 5     5 uc001aal.1   79501     1    918
+```
+---
+## Extracting Sequence Information
+
+As with many Bioconductor packages, there is interoperability between **BSgenome** packages holding genome sequences and **TxDb** objects with gene models. One very useful function is the **extractTranscriptSeqs()** function.
+
+The **extractTranscriptSeqs()** accepts a BSgenome object of genomic sequence of interest and a TxDb object.
+
+
+```r
+library(BSgenome.Hsapiens.UCSC.hg19)
+hg19TransSeq &lt;- extractTranscriptSeqs(BSgenome.Hsapiens.UCSC.hg19, 
+                                      transcripts=TxDb.Hsapiens.UCSC.hg19.knownGene)
+hg19TransSeq
+```
+
+```
+## DNAStringSet object of length 82960:
+##          width seq                                          names               
+##     [1]   1652 CTTGCCGTCAGCCTTTTCTTT...AAGCACACTGTTGGTTTCTG 1
+##     [2]   1488 CTTGCCGTCAGCCTTTTCTTT...AAGCACACTGTTGGTTTCTG 2
+##     [3]   1595 CTTGCCGTCAGCCTTTTCTTT...AAGCACACTGTTGGTTTCTG 3
+##     [4]    918 ATGGTGACTGAATTCATTTTT...ATTCTAGTGTAAAGTTTTAG 4
+##     [5]     32 TACAGACCAAGCTCATGACTCACAATGGCCTA             5
+##     ...    ... ...
+## [82956]   1217 GCCAGTTTAGGGTCTCTGGTA...AACCTCCGCCTCCTGAGATC 82956
+## [82957]    737 CTCCACTTCTGATCCTCCCCG...CCGCTTTATTAGATGCAGTG 82957
+## [82958]     30 TGGTGAATTTCAGCCAAAGTGGCCAAAGAA               82958
+## [82959]     30 TTGCAGAGGTGGCTGGTTGCTCTTTGAGCC               82959
+## [82960]     30 TGGTGAATTTCAGCCAAAGTGGCCAAAGAA               82960
+```
+---
+## Extracting Sequence Information
+
+We can then either work with the resulting DNAStringSet then in R or write to Fasta file for analysis in external programs.
+
+
+```r
+writeXStringSet(hg19TransSeq,"myTranscriptSequences.fa")
+```
+
+---
+## Changing Naming Conventions
+
+So far we have used the standard UCSC style of chromosome names
+
+- Chr1, Chr2, Chr3 ..
+
+Sadly, conventions for chromosome and contig names can vary across different annotation sources.
+
+Ensembl for instance uses.
+
+- 1, 2, 3, 4 ...
+
+---
+## Changing Chromosome Naming Styles
+
+The **GenomeInfoDb** package and associated **GenomeInfoDbData** package contain mappings between differing naming conventions and functions to convert between them.
+
+First we need to load the **GenomeInfoDb** library.
+
+
+```r
+library(GenomeInfoDb)
+```
+
+---
+## Reviewing Chromosome Naming Styles
+
+We can review all the mappings for supported organisms' genomes using the **genomeStyles()** function with no arguments.
+
+The **genomeStyles()** function returns a list of mapping data.frames of each organism.
+
+
+```r
+allMappings &lt;- genomeStyles()
+names(allMappings)
+```
+
+```
+##  [1] "Arabidopsis_thaliana"     "Caenorhabditis_elegans"  
+##  [3] "Canis_familiaris"         "Cyanidioschyzon_merolae" 
+##  [5] "Drosophila_melanogaster"  "Homo_sapiens"            
+##  [7] "Mus_musculus"             "Oryza_sativa"            
+##  [9] "Populus_trichocarpa"      "Rattus_norvegicus"       
+## [11] "Saccharomyces_cerevisiae" "Zea_mays"
+```
+
+---
+## Chromosome Naming Style
+
+We can then review mappings for our organism of interest's genomes by retrieving the relevant entry from our list returned by the **genomeStyles()** function.
+
+The resulting data.frame contains information on contig/chromosome mappings as well as additional information on chromosomes, i.e. Circularity. 
+
+
+```r
+#allMappings$Homo_sapiens or
+allMappings[["Homo_sapiens"]]
+```
+
+```
+##    circular  auto   sex NCBI  UCSC dbSNP Ensembl
+## 1     FALSE  TRUE FALSE    1  chr1   ch1       1
+## 2     FALSE  TRUE FALSE    2  chr2   ch2       2
+## 3     FALSE  TRUE FALSE    3  chr3   ch3       3
+## 4     FALSE  TRUE FALSE    4  chr4   ch4       4
+## 5     FALSE  TRUE FALSE    5  chr5   ch5       5
+## 6     FALSE  TRUE FALSE    6  chr6   ch6       6
+## 7     FALSE  TRUE FALSE    7  chr7   ch7       7
+## 8     FALSE  TRUE FALSE    8  chr8   ch8       8
+## 9     FALSE  TRUE FALSE    9  chr9   ch9       9
+## 10    FALSE  TRUE FALSE   10 chr10  ch10      10
+## 11    FALSE  TRUE FALSE   11 chr11  ch11      11
+## 12    FALSE  TRUE FALSE   12 chr12  ch12      12
+## 13    FALSE  TRUE FALSE   13 chr13  ch13      13
+## 14    FALSE  TRUE FALSE   14 chr14  ch14      14
+## 15    FALSE  TRUE FALSE   15 chr15  ch15      15
+## 16    FALSE  TRUE FALSE   16 chr16  ch16      16
+## 17    FALSE  TRUE FALSE   17 chr17  ch17      17
+## 18    FALSE  TRUE FALSE   18 chr18  ch18      18
+## 19    FALSE  TRUE FALSE   19 chr19  ch19      19
+## 20    FALSE  TRUE FALSE   20 chr20  ch20      20
+## 21    FALSE  TRUE FALSE   21 chr21  ch21      21
+## 22    FALSE  TRUE FALSE   22 chr22  ch22      22
+## 23    FALSE FALSE  TRUE    X  chrX   chX       X
+## 24    FALSE FALSE  TRUE    Y  chrY   chY       Y
+## 25     TRUE FALSE FALSE   MT  chrM  chMT      MT
+```
+
+---
+## Changing Chromosome Naming Styles
+
+The **seqlevelsStyle()** function allows us to review as well as set the naming convention for our GenomicRanges or TxDb objects.
+
+First lets review the genes from the  **TxDb.Hsapiens.UCSC.hg19.knownGene** package. Here we see they are **UCSC** style.
+
+
+```r
+myGenes &lt;- genes(TxDb.Hsapiens.UCSC.hg19.knownGene)
+```
+
+```
+##   403 genes were dropped because they have exons located on both strands
+##   of the same reference sequence or on more than one reference sequence,
+##   so cannot be represented by a single genomic range.
+##   Use 'single.strand.genes.only=FALSE' to get all the genes in a
+##   GRangesList object, or use suppressMessages() to suppress this message.
+```
+
+```r
+seqlevelsStyle(myGenes)
+```
+
+```
+## [1] "UCSC"
+```
+
+```r
+myGenes[1:2,]
+```
+
+```
+## GRanges object with 2 ranges and 1 metadata column:
+##      seqnames            ranges strand |     gene_id
+##         &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;character&gt;
+##    1    chr19 58858172-58874214      - |           1
+##   10     chr8 18248755-18258723      + |          10
+##   -------
+##   seqinfo: 93 sequences (1 circular) from hg19 genome
+```
+
+---
+## Changing Chromosome Naming Styles
+
+Now we can update them to **Ensembl**, **NCBI** or **dbSNP** styles. Here we update to **Ensembl** chromosome naming conventions. 
+
+This conversion is essential if we want to use our objects with data generated following Ensembl styles.
+
+
+```r
+seqlevelsStyle(myGenes) &lt;- "Ensembl"
+myGenes[1:2,]
+```
+
+```
+## GRanges object with 2 ranges and 1 metadata column:
+##      seqnames            ranges strand |     gene_id
+##         &lt;Rle&gt;         &lt;IRanges&gt;  &lt;Rle&gt; | &lt;character&gt;
+##    1       19 58858172-58874214      - |           1
+##   10        8 18248755-18258723      + |          10
+##   -------
+##   seqinfo: 93 sequences (1 circular) from hg19 genome
+```
+
+
+---
+## Gene Annotation
+
+Where as the **TxDb** packages hold information on gene models such as exons positions and exon to gene mapping, the **OrgDb** packages contain information on gene's mapping to alternative IDs and any functional annotation. 
+
+Information on model organism's gene annotation is contained with the **org.db** packages.
+
+Format is org. **species** . **ID type** .db
+
+Homo Sapiens annotation with Entrez Gene IDs -- org.Hs.eg.db
+
+&lt;div align="center"&gt;
+&lt;img src="imgs/orgdb.png" alt="igv" height="400" width="400"&gt;
+&lt;/div&gt;
+
+---
+## Gene Annotation
+
+To gain access to gene annotation we must first load the library for the relevant species.
+
+Here we install and load the library for Human, Org.Hs.eg.db.
+
+
+
+```r
+BiocManager::install("org.Hs.eg.db")
+library(org.Hs.eg.db)
+class(org.Hs.eg.db)
+```
+
+
+```
+## [1] "OrgDb"
+## attr(,"package")
+## [1] "AnnotationDbi"
+```
+
+---
+## Org.db AnnotationDbi Accessor Functions
+
+As with the TxDb packages, we will need to use special accessors to retrieve information from Org.db.
+
+We can use the functions:
+
+- **columns()** - Display what kind of annotation is available in OrgDb objects.
+- **keytypes()** - Displays which type of identifiers can be used with **select** function. 
+- **keys()** - Returns keys (index) for the database contained in the OrgDb object. Used along with **keytypes()** in &lt;b&gt;select&lt;/b&gt; function to retrieve interested annotation
+- **select** - Retrieve the annotation data as a data.frame based on the supplied keys, keytypes and columns. 
+
+We will explore how to retrieve annotation from gene-centric organism level annotation package (org.Hs.eg.db) using these functions.
+
+---
+## Accessing Annotation from Org.Db
+
+We can use the **columns()** function first to list available annotation.
+
+Here we see our annotation for alternative IDs (ENSEMBL, REFSEQ, GENENAME) as well as functional annotation (GO, PATH, OMIM)
+
+
+```r
+columns(org.Hs.eg.db)
+```
+
+```
+##  [1] "ACCNUM"       "ALIAS"        "ENSEMBL"      "ENSEMBLPROT"  "ENSEMBLTRANS"
+##  [6] "ENTREZID"     "ENZYME"       "EVIDENCE"     "EVIDENCEALL"  "GENENAME"    
+## [11] "GENETYPE"     "GO"           "GOALL"        "IPI"          "MAP"         
+## [16] "OMIM"         "ONTOLOGY"     "ONTOLOGYALL"  "PATH"         "PFAM"        
+## [21] "PMID"         "PROSITE"      "REFSEQ"       "SYMBOL"       "UCSCKG"      
+## [26] "UNIPROT"
+```
+--
+To know more about the above identifier types
+
+```r
+help(GENENAME)
+```
+---
+## Accessing Annotation from org.Hs.eg.db
+
+Which keytypes can be used to query this database can be retrieved using keytypes.
+
+```r
+keytypes(org.Hs.eg.db)
+```
+
+```
+##  [1] "ACCNUM"       "ALIAS"        "ENSEMBL"      "ENSEMBLPROT"  "ENSEMBLTRANS"
+##  [6] "ENTREZID"     "ENZYME"       "EVIDENCE"     "EVIDENCEALL"  "GENENAME"    
+## [11] "GENETYPE"     "GO"           "GOALL"        "IPI"          "MAP"         
+## [16] "OMIM"         "ONTOLOGY"     "ONTOLOGYALL"  "PATH"         "PFAM"        
+## [21] "PMID"         "PROSITE"      "REFSEQ"       "SYMBOL"       "UCSCKG"      
+## [26] "UNIPROT"
+```
+---
+
+## Accessing Annotation from Org.Db
+
+If we want to extract few identifiers of a particular keytype, we can use keys() function
+
+```r
+keys(org.Hs.eg.db, keytype="SYMBOL")[1:10]
+```
+
+```
+##  [1] "A1BG"     "A2M"      "A2MP1"    "NAT1"     "NAT2"     "NATP"    
+##  [7] "SERPINA3" "AADAC"    "AAMP"     "AANAT"
+```
+---
+## Accessing Annotation from Org.Db
+
+We can extract other annotations for a particular identifier using &lt;b&gt;select&lt;/b&gt; function
+
+```r
+select(org.Hs.eg.db, keys = "A1BG", keytype = "SYMBOL", 
+       columns = c("SYMBOL", "GENENAME", "CHR") )
+```
+
+```
+##   SYMBOL               GENENAME CHR
+## 1   A1BG alpha-1-B glycoprotein  19
+```
+
+---
+## Annotating Results
+
+We can use this now to translate our Entrez IDs from TxDb object to a gene name
+
+```r
+geneLocations &lt;- genes(hg18TxDb)
+```
+
+```
+##   379 genes were dropped because they have exons located on both strands
+##   of the same reference sequence or on more than one reference sequence,
+##   so cannot be represented by a single genomic range.
+##   Use 'single.strand.genes.only=FALSE' to get all the genes in a
+##   GRangesList object, or use suppressMessages() to suppress this message.
+```
+
+```r
+geneLocations
+```
+
+```
+## GRanges object with 19742 ranges and 1 metadata column:
+##         seqnames              ranges strand |     gene_id
+##            &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; | &lt;character&gt;
+##       1    chr19   63549984-63565932      - |           1
+##      10     chr8   18293035-18303003      + |          10
+##     100    chr20   42681577-42713790      - |         100
+##    1000    chr18   23784933-24011189      - |        1000
+##   10000     chr1 241718158-242073207      - |       10000
+##     ...      ...                 ...    ... .         ...
+##    9991     chr9 114020538-114135733      - |        9991
+##    9992    chr21   34658193-34665310      + |        9992
+##    9993    chr22   17403795-17489967      - |        9993
+##    9994     chr6   90596334-90640876      + |        9994
+##    9997    chr22   49308863-49310900      - |        9997
+##   -------
+##   seqinfo: 49 sequences (1 circular) from hg18 genome
+```
+
+---
+## Annotating Results
+
+
+```r
+IDs &lt;- geneLocations$gene_id
+myTable &lt;- select(org.Hs.eg.db, keys = IDs, keytype = "ENTREZID",
+                  columns = c("SYMBOL", "GENENAME", "ENTREZID") )
+myTable[1:2,]
+```
+
+```
+##   ENTREZID SYMBOL               GENENAME
+## 1        1   A1BG alpha-1-B glycoprotein
+## 2       10   NAT2  N-acetyltransferase 2
+```
+---
+
+## Time for an Exercise
+
+[Link_to_exercises](../../exercises/exercises/GenomicFeatures_exercise.html)
+
+[Link_to_answers](../../exercises/answers/GenomicFeatures_answers.html)
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

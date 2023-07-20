@@ -8,13 +8,14 @@ editor: source
 ------------------------------------------------------------------------
 🧑 Instructor: [Md. Jubayer Hossain](https://hossainlab.github.io/)
 
-🗓 July 16 - July 31, 2023 \| 9:00 pm - 11:00pm (Bangladesh Time)
+🗓 July 20 - August 3, 2023 \| 9:00 pm - 11:00pm (Bangladesh Time)
 
 🏨 Medium - Zoom/Google Meet
 
-💥 **Register** with [Google Forms](https://forms.gle/hSH1ACSqDYYVsxie6)
+<!-- 💥 **Register** with [Google Forms](https://forms.gle/hSH1ACSqDYYVsxie6) -->
+**Registration**: *Closed* 
 
-💥 **Registration Fee**: 1020 BDT (for students),1530BDT (for professionals)
+<!-- 💥 **Registration Fee**: 1020 BDT (for students),1530BDT (for professionals) -->
 
 📝 To join private Telegram group for the course, follow instructions in the email you received after registration.
 ------------------------------------------------------------------------

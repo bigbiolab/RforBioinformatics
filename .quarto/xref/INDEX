@@ -31,5 +31,71 @@
   },
   "cheatsheet.qmd": {
     "cheatsheet.html": "d7262ffa"
+  },
+  "materials/singlepage/Day03.qmd": {
+    "Day03.html": "5e633064"
+  },
+  "materials/slides/Day 01/00-intro.qmd": {
+    "00-intro.html": "29018999"
+  },
+  "materials/slides/Day 01/01-background.qmd": {
+    "01-background.html": "7c755594"
+  },
+  "materials/slides/Day 01/02-getting-started.qmd": {
+    "02-getting-started.html": "00726ef7"
+  },
+  "materials/slides/Day 01/03-data-types.qmd": {
+    "03-data-types.html": "c2640bc2"
+  },
+  "materials/slides/Day 01/04-operators.qmd": {
+    "04-operators.html": "a4ebc70c"
+  },
+  "materials/slides/Day 01/index.qmd": {
+    "index.html": "376e3891"
+  },
+  "materials/slides/Day 02/00-data-structures.qmd": {
+    "00-data-structures.html": "a908c339"
+  },
+  "materials/slides/Day 02/01-subsetting-robjects.qmd": {
+    "01-subsetting-robjects.html": "ea0481be"
+  },
+  "materials/slides/Day 02/02-control-flow.qmd": {
+    "02-control-flow.html": "a884fd6e"
+  },
+  "materials/slides/Day 02/03-functions.qmd": {
+    "03-functions.html": "69ec5147"
+  },
+  "materials/slides/Day 02/04-dates-and-times.qmd": {
+    "04-dates-and-times.html": "fde160ed"
+  },
+  "materials/slides/Day 02/05-loop-functions.qmd": {
+    "05-loop-functions.html": "0a07dc7e"
+  },
+  "materials/slides/Day 02/06-simulations.qmd": {
+    "06-simulations.html": "defd46ee"
+  },
+  "materials/slides/Day 02/index.qmd": {
+    "index.html": "c73c84b5"
+  },
+  "sessions.qmd": {
+    "sessions.html": "e13b9fc4"
+  },
+  "materials/slides/Day01/00-intro.qmd": {
+    "00-intro.html": "00426258"
+  },
+  "materials/slides/Day01/01-background.qmd": {
+    "01-background.html": "935da535"
+  },
+  "materials/slides/Day01/02-getting-started.qmd": {
+    "02-getting-started.html": "8f34b8c2"
+  },
+  "materials/slides/Day01/03-data-types.qmd": {
+    "03-data-types.html": "3b66b396"
+  },
+  "materials/slides/Day01/04-operators.qmd": {
+    "04-operators.html": "f874cd43"
+  },
+  "materials/slides/Day01/index.qmd": {
+    "index.html": "a0ba261b"
   }
 }

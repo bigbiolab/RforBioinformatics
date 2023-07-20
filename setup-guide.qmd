@@ -1,6 +1,6 @@
 ---
 title: "Setup Guide: Install R and RStudio"
-subtitle: ""
+subtitle: "R/Bioconductor for Bioinformatics"
 editor: source
 ---
 

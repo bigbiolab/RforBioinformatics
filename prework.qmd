@@ -1,5 +1,6 @@
 ---
-title: "Preparation"
+title: "Prework"
+subtitle: "R/Bioconductor for Bioinformatics"
 format: 
   html:
     code-fold: false
@@ -7,36 +8,96 @@ format:
 editor: source
 ---
 
-::: callout-tip
-## Page without code
+Before attending the workshop please have the following installed and configured on your machine.
 
-This page contains an example for some structured preparation information for a workshop. No code is executed here.
-:::
+-   Recent version of **R**
 
-Here are some preparation information for the participants.
+-   Recent version of **RStudio**
 
-## Software
+-   Most recent release of the [**Bioconductor**](https://www.bioconductor.org/install/) and other packages used in courses
 
-In this workshop we will be using R. You can either
+Install the latest release of R, then get the latest version of Bioconductor by starting R and entering the commands. 
 
--   have **R and Rstudio** installed on your laptop
--   or, use **Posit cloud** (formerly Rstudio Cloud).
+```{r, eval=FALSE}
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install(version = "3.16")
+```
+
+- Ensure you can knit R markdown documents
+
+    -   Open RStudio and create a new Rmarkdown document
+    -   Save the document and check you are able to knit it.
+
+## Install Bioconductor Packages
+```{r, eval=FALSE}
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install()
+```
+
+Install specific packages, e.g., “GenomicFeatures” and “AnnotationDbi”, with
+
+
+```{r, eval=FALSE}
+BiocManager::install(c("GenomicFeatures", "AnnotationDbi"))
+```
+
+The install() function (in the BiocManager package) has arguments that change its default behavior; type ?install for further help.
+
 
 [Posit cloud](https://posit.cloud) is free of charge for personal users, yet you need to [sign up](https://posit.cloud/plans/free) for a new user account and have internet connection.
 
-The R package we are using is `glmnet`.
+## Packages 
+
+```{r}
+#| eval: false
+install.packages('BiocManager')
+BiocManager::install('methods')
+BiocManager::install('rmarkdown')
+BiocManager::install('igraph')
+BiocManager::install('org.Hs.eg.db')
+BiocManager::install('RMariaDB')
+BiocManager::install('Rbowtie')
+BiocManager::install('parallel')
+BiocManager::install('QuasR')
+BiocManager::install('BSgenome')
+BiocManager::install('BSgenome.Mmusculus.UCSC.mm10')
+BiocManager::install('BSgenome.Hsapiens.UCSC.hg19')
+BiocManager::install('BSgenome.Hsapiens.UCSC.hg38')
+BiocManager::install('Biostrings')
+BiocManager::install('rtracklayer')
+BiocManager::install('ggplot2')
+BiocManager::install('GenomicRanges')
+BiocManager::install('ShortRead')
+BiocManager::install('Rsubread')
+BiocManager::install('Rsamtools')
+BiocManager::install('Rbowtie2')
+BiocManager::install('stringi')
+BiocManager::install('Rhisat2')
+BiocManager::install('R.utils')
+BiocManager::install('GenomicAlignments')
+BiocManager::install('basecallQC')
+BiocManager::install('TxDb.Mmusculus.UCSC.mm10.knownGene')
+BiocManager::install('TxDb.Hsapiens.UCSC.hg19.knownGene')
+BiocManager::install('Rfastp')
+BiocManager::install('TxDb.Hsapiens.UCSC.hg38.knownGene')
+BiocManager::install('knitr')
+BiocManager::install('testthat')
+BiocManager::install('yaml')
+```
 
 
 ## Data
 
-The datasets we use can be found here (*insert link*).
+The datasets we use can be found here <https://github.com/omicscenter/RforBioinformatics>.
 
 ## Code
 
-The R scripts used in part 1 and part 2 can be found here (*insert link*).
+The R scripts used in part 1 and part 2 can be found here <https://github.com/omicscenter/RforBioinformatics>.
 
 ## Resources
 
-Lecture notes (*insert link*)
+Lecture notes <https://github.com/omicscenter/RforBioinformatics>
 
-Lab notes (*insert link*)
+Lab notes <https://github.com/omicscenter/RforBioinformatics>

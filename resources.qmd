@@ -1,5 +1,6 @@
 ---
 title: "Resources"
+subtitle: "R/Bioconductor for Bioinformatics"
 format: 
   html:
     code-fold: false

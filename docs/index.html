@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Course site</title>
+<title>R for Bioinformatics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -137,8 +137,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome!</a></li>
-  <li><a href="#schedule" id="toc-schedule" class="nav-link" data-scroll-target="#schedule">Schedule</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
+  <ul class="collapse">
+  <li><a href="#learning-bbjectives" id="toc-learning-bbjectives" class="nav-link" data-scroll-target="#learning-bbjectives">Learning bbjectives</a></li>
+  <li><a href="#why-r" id="toc-why-r" class="nav-link" data-scroll-target="#why-r">Why R?</a></li>
+  <li><a href="#useful-resources-for-learning-r" id="toc-useful-resources-for-learning-r" class="nav-link" data-scroll-target="#useful-resources-for-learning-r">Useful resources for learning R</a></li>
+  <li><a href="#recording-of-classes" id="toc-recording-of-classes" class="nav-link" data-scroll-target="#recording-of-classes">Recording of classes</a></li>
+  <li><a href="#is-this-course-for-me" id="toc-is-this-course-for-me" class="nav-link" data-scroll-target="#is-this-course-for-me">Is this course for me?</a></li>
+  <li><a href="#zoom-working-virtually" id="toc-zoom-working-virtually" class="nav-link" data-scroll-target="#zoom-working-virtually">Zoom + Working Virtually</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -147,7 +154,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Title of Your Workshop Session</h1>
+<h1 class="title">R for Bioinformatics</h1>
+<p class="subtitle lead">Learn to Analyze Genomics, Metagenomics, and Transcriptomics Data with R</p>
 </div>
 
 
@@ -165,7 +173,7 @@ ul.task-list li input[type="checkbox"] {
 <table class="table">
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Instructor: <a href="https://hossainlab.github.io/">Md. Jubayer Hossain</a></td>
+<td style="text-align: left;">🧑 Instructor: <a href="https://hossainlab.github.io/">Md. Jubayer Hossain</a></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">🗓 July 16 - July 31, 2023 | 9:00 pm - 11:00pm (Bangladesh Time)</td>
@@ -184,68 +192,72 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<section id="welcome" class="level1">
-<h1>Welcome!</h1>
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<p>Welcome to the exciting world of bioinformatics! In this course, we will explore the application of the R programming language in the field of bioinformatics. Whether you are a biologist, a computer scientist, or simply someone interested in the intersection of biology and programming, this book is designed to help you get started with using R for bioinformatics.</p>
+<p>Bioinformatics combines biology, computer science, statistics, and math to understand complex biological processes. R is a powerful programming language widely used in bioinformatics for data analysis, visualization, and modeling. It has a rich set of packages and libraries for processing biological data.</p>
+<p>This course assumes no prior knowledge of R programming, but assumes basic understanding of statistics and bioinformatics. We’ll cover data manipulation, visualization, statistics, and common bioinformatics techniques.</p>
+<p>Remember, learning a new language and field takes time and practice. Stay persistent, ask questions, and engage actively with the material. Let’s embark on this exciting journey into bioinformatics with R. By the end, you’ll have the skills to explore and contribute to bioinformatics research.</p>
+<p>Enjoy your learning experience, and good luck!</p>
+<section id="learning-bbjectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-bbjectives">Learning bbjectives</h2>
 <ul>
-<li>The goal of the workshop is to … (<em>insert your message</em>)</li>
-<li>For example, introduce kep concepts in machine learning, such as regularisation.</li>
-<li>Workshop material can be found in the workshop <a href="https://github.com">github repository</a>.</li>
-</ul>
-<section id="learning-objectives" class="level4">
-<h4 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h4>
-<p>At the end of the tutorial, participants will be able to</p>
-<ul>
-<li>understand key concepts for … (<em>insert your message</em>)</li>
-<li>For example, training machine learning models such as regularisation.</li>
-<li>another objective</li>
-</ul>
-</section>
-<section id="pre-requisites" class="level4">
-<h4 class="anchored" data-anchor-id="pre-requisites">Pre-requisites</h4>
-<ul>
-<li>Basic familiarity with R</li>
-<li>Some other knowledge</li>
+<li><p>Understand the fundamentals of bioinformatics and its application in biological research.</p></li>
+<li><p>Gain a solid foundation in R programming, including data structures, control flow, and functions.</p></li>
+<li><p>Learn data manipulation techniques specific to bioinformatics, such as working with DNA sequences and protein structures.</p></li>
+<li><p>Gain hands-on experience by working with real-world bioinformatics datasets and applying R to extract valuable information.</p></li>
+<li><p>Understand the importance of reproducibility and best practices in bioinformatics research using R.</p></li>
+<li><p>Feel confident in applying R for basic bioinformatics tasks and be ready to explore more advanced topics in the field.</p></li>
 </ul>
 </section>
+<section id="why-r" class="level2">
+<h2 class="anchored" data-anchor-id="why-r">Why R?</h2>
+<ul>
+<li>R is a programming and statistical language.</li>
+<li>R is used for data Analysis and Visualization.</li>
+<li>R is simple and easy to learn, read and write.</li>
+<li>R is an example of a FLOSS (Free Libre and Open Source Software) where one can freely distribute copies of this software, read its source code, modify it, etc.</li>
+</ul>
 </section>
-<section id="schedule" class="level1">
-<h1>Schedule</h1>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tabular schedule
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>It can be useful to include a tabular schedule with links.</p>
-</div>
-</div>
-<table class="table">
-<thead>
-<tr class="header">
-<th style="text-align: center;">Time</th>
-<th style="text-align: center;">Topic</th>
-<th style="text-align: center;">Presenter</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">9:00 - 10:30</td>
-<td style="text-align: center;"><a href="part_1_prep.qmd">Session 1: Preparation</a></td>
-<td style="text-align: center;">Instructor A</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">10:45 - 12:00</td>
-<td style="text-align: center;"><a href="part_2_eda.qmd">Session 2: Exploratory Analysis</a></td>
-<td style="text-align: center;">Instructor B, C</td>
-</tr>
-</tbody>
-</table>
+<section id="useful-resources-for-learning-r" class="level2">
+<h2 class="anchored" data-anchor-id="useful-resources-for-learning-r">Useful resources for learning R</h2>
+<ul>
+<li><p><strong>DataCamp:</strong> interactive online lessons in R.</p>
+<ul>
+<li>Some of the courses are free (particularly community-written lessons like the one you’ll do today), but for paid courses, DataCamp costs about 300 SEK / mo.</li>
+</ul></li>
+<li><p><strong>RStudio Cheat Sheets:</strong> Very helpful 1-2 page overviews of common tasks and packages in R.</p></li>
+<li><p><strong>Quick-R:</strong> Website with short example-driven overviews of R functionality.</p></li>
+<li><p><strong>StackOverflow:</strong> Part of the Stack Exchange network, StackOverflow is a Q&amp;A community website for people who work in programming. Tons of incredibly good R users and developers interact on StackExchange, so it’s a great place to search for answers to your questions.</p></li>
+<li><p><strong>R-Bloggers:</strong> Blog aggregagator for posts about R. Great place to learn really cool things you can do in R.</p></li>
+<li><p><strong>R for Data Science:</strong> Online version of the book by Hadley Wickham, who has written many of the best packages for R, including the Tidyverse, which we will cover.</p></li>
+</ul>
+</section>
+<section id="recording-of-classes" class="level2">
+<h2 class="anchored" data-anchor-id="recording-of-classes">Recording of classes</h2>
+<p>Class lectures will be recorded automatically using cloud. The links will be posted to CHIRAL Classes when they are available.</p>
+</section>
+<section id="is-this-course-for-me" class="level2">
+<h2 class="anchored" data-anchor-id="is-this-course-for-me">Is this course for me?</h2>
+<p>If your answer to any of the following questions is “yes”, then this is the right workshop for you.</p>
+<ul>
+<li><p>Do you make summary tables in R (data, survey data, regression models, time-to-event data, adverse event reports)?</p></li>
+<li><p>Do you want your workflow to be reproducible?</p></li>
+<li><p>Are you often frustrated with the immense amount of code required to create great-looking tables in R?</p></li>
+</ul>
+<p>The workshop is designed for those with some experience in R. It will be expected that you can perform basic data manipulation. Experience with the {tidyverse} and the <code>%&gt;%</code> operator is a plus, but not required.</p>
+</section>
+<section id="zoom-working-virtually" class="level2">
+<h2 class="anchored" data-anchor-id="zoom-working-virtually">Zoom + Working Virtually</h2>
+<ul>
+<li><p>Zoom link will be emailed to students</p></li>
+<li><p>Class sessions will be recorded and later posted</p></li>
+<li><p>We will have lectures as well as breakout room sessions to work on labs</p></li>
+<li><p>Please be aware that there is the option to use closed captioning</p></li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

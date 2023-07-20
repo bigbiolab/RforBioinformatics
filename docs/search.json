@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Title of Your Workshop Session",
+    "title": "R for Bioinformatics",
     "section": "",
-    "text": "Instructor: Md. Jubayer Hossain\n\n\n🗓 July 16 - July 31, 2023 | 9:00 pm - 11:00pm (Bangladesh Time)\n\n\n🏨 Medium - Zoom/Google Meet\n\n\n💥 Register with Google Forms\n\n\n💥 Registration Fee: 1020 BDT (for students),1530BDT (for professionals)\n\n\n📝 To join private Telegram group for the course, follow instructions in the email you received after registration.\n\n\n\n\nWelcome!\n\nThe goal of the workshop is to … (insert your message)\nFor example, introduce kep concepts in machine learning, such as regularisation.\nWorkshop material can be found in the workshop github repository.\n\n\nLearning Objectives\nAt the end of the tutorial, participants will be able to\n\nunderstand key concepts for … (insert your message)\nFor example, training machine learning models such as regularisation.\nanother objective\n\n\n\nPre-requisites\n\nBasic familiarity with R\nSome other knowledge\n\n\n\n\nSchedule\n\n\n\n\n\n\nTabular schedule\n\n\n\nIt can be useful to include a tabular schedule with links.\n\n\n\n\n\nTime\nTopic\nPresenter\n\n\n\n\n9:00 - 10:30\nSession 1: Preparation\nInstructor A\n\n\n10:45 - 12:00\nSession 2: Exploratory Analysis\nInstructor B, C"
+    "text": "🧑 Instructor: Md. Jubayer Hossain\n\n\n🗓 July 16 - July 31, 2023 | 9:00 pm - 11:00pm (Bangladesh Time)\n\n\n🏨 Medium - Zoom/Google Meet\n\n\n💥 Register with Google Forms\n\n\n💥 Registration Fee: 1020 BDT (for students),1530BDT (for professionals)\n\n\n📝 To join private Telegram group for the course, follow instructions in the email you received after registration."
   },
   {
     "objectID": "part_2_eda.html",
@@ -65,9 +65,9 @@
   {
     "objectID": "prework.html",
     "href": "prework.html",
-    "title": "Preparation",
+    "title": "Prework",
     "section": "",
-    "text": "Page without code\n\n\n\nThis page contains an example for some structured preparation information for a workshop. No code is executed here.\nHere are some preparation information for the participants."
+    "text": "Before attending the workshop please have the following installed and configured on your machine.\nInstall the latest release of R, then get the latest version of Bioconductor by starting R and entering the commands.\nif (!require(\"BiocManager\", quietly = TRUE))\n    install.packages(\"BiocManager\")\nBiocManager::install(version = \"3.16\")"
   },
   {
     "objectID": "prework.html#software",
@@ -79,23 +79,23 @@
   {
     "objectID": "prework.html#data",
     "href": "prework.html#data",
-    "title": "Preparation",
+    "title": "Prework",
     "section": "Data",
-    "text": "Data\nThe datasets we use can be found here (insert link)."
+    "text": "Data\nThe datasets we use can be found here https://github.com/omicscenter/RforBioinformatics."
   },
   {
     "objectID": "prework.html#code",
     "href": "prework.html#code",
-    "title": "Preparation",
+    "title": "Prework",
     "section": "Code",
-    "text": "Code\nThe R scripts used in part 1 and part 2 can be found here (insert link)."
+    "text": "Code\nThe R scripts used in part 1 and part 2 can be found here https://github.com/omicscenter/RforBioinformatics."
   },
   {
     "objectID": "prework.html#resources",
     "href": "prework.html#resources",
-    "title": "Preparation",
+    "title": "Prework",
     "section": "Resources",
-    "text": "Resources\nLecture notes (insert link)\nLab notes (insert link)"
+    "text": "Resources\nLecture notes https://github.com/omicscenter/RforBioinformatics\nLab notes https://github.com/omicscenter/RforBioinformatics"
   },
   {
     "objectID": "resources.html",
@@ -205,9 +205,9 @@
   {
     "objectID": "q-and-a.html",
     "href": "q-and-a.html",
-    "title": "FAQs - R for Research",
+    "title": "Frequently Asked Questions (FAQs)",
     "section": "",
-    "text": "Q1: Q1: I have no prior programming experience. Can I still take this course?\nAbsolutely! This course is designed specifically for beginners with no prior programming experience. We will start from the basics and guide you through step by step, providing a solid foundation in R programming for research purposes.\nQ2: I usually work with statistical software like SPSS or Stata. Why should I learn R?\nR offers a wide range of advantages for researchers. It is a powerful and flexible programming language specifically designed for data analysis. It has a vast collection of packages and tools for statistical analysis, data visualization, and advanced techniques. Additionally, R is an open-source software, which means it is completely free and has a vibrant community for support and resources.\nQ3: Can I apply what I learn in this course to my specific field of research?\nAbsolutely! This course is designed to be applicable to researchers in any field. While the examples and exercises may be general, the skills and techniques you learn can be applied to your specific research domain. R is widely used across various disciplines, and the course will equip you with the tools and understanding to adapt R to meet the needs of your research.\nQ4: Will this course cover advanced statistical methods and techniques?\nWhile this course is aimed at beginners, it does introduce some advanced techniques in later modules. You will learn about regression analysis, data mining, text analysis, and web scraping. These topics will provide you with a solid foundation, and you can further explore advanced statistical methods in R based on your specific research interests.\nQ5: Will I receive any course materials or resources?\nYes, you will have access to comprehensive course materials, including lecture notes, code examples, and exercises. These materials will serve as a valuable resource for your learning and can be referred to even after completing the course. Additionally, we will provide a list of recommended books, websites, and online tutorials for further learning and exploration.\nQ6: Is there any support available if I encounter difficulties during the course?\nAbsolutely! We understand that learning a new programming language can be challenging. You will have access to a support forum where you can ask questions, seek clarification, and interact with the instructor and other participants. The instructor will also provide guidance and assistance throughout the course to ensure your learning experience is smooth and enjoyable."
+    "text": "Q: What is the level of proficiency in R programming language required for this course?\n\n\nA: Basic proficiency in R programming language is required for this course. However, the course will cover the basics of R programming language as well, so students who are not familiar with R can also take this course.\n\n\nQ: Is this course suitable for beginners in bioinformatics?\n\n\nA: Yes, this course is suitable for beginners in bioinformatics who have a basic understanding of molecular biology and genetics.\n\n\nQ: Do I need to have prior knowledge of statistics for this course?\n\n\nA: Yes, a basic understanding of statistics and probability theory is required for this course.\n\n\nQ: Can I take this course if I am not from a biological sciences background?\n\n\nA: Yes, this course can be taken by anyone who wants to learn R/Bioconductor for bioinformatics data analysis, regardless of their background.\n\n\nQ: What is the duration of the course?\n\n\nA: The duration of the course may vary depending on the institution offering the course, but typically ranges from several weeks to a few months.\n\n\nQ: Is this course available online?\n\n\nA: Yes, this course may be available online, depending on the institution offering the course.\n\n\nQ: Can I get a certificate after completing the course?\n\n\nA: Yes.\n\n\nQ: How can I apply the knowledge gained from this course to my research projects?\n\n\nA: The knowledge gained from this course can be applied to your research projects by using R/Bioconductor packages for bioinformatics data analysis. You can apply the techniques and methods learned in this course to your own data and research questions."
   },
   {
     "objectID": "about.html#instructor",
@@ -530,5 +530,75 @@
     "title": "Cheatsheet",
     "section": "Data Input/Output",
     "text": "Data Input/Output\n\nMajor concepts\n\nDelimited file - columns within the file have boundaries created with some type of punctuation - for example, a csv file stands for comma separated values, thus the columns are delimited or separated by commas. txt files often use tabs.\ntibble – a rectangular data frame, where data are split into rows and columns.\nFile path - where a file lives on your computer (or on the internet) - File paths can be relative or absolute.\nGetting help - For any function, you can write ?FUNCTION_NAME, or help(\"FUNCTION_NAME\") to look at the help file for that function.\nR Projects set the working directory where the .Rproj file is.\nR Markdown files look for file paths relative to where the .Rmd file is located\n\n\n\nFunctions\n\n\n\nLibrary/Package\nPiece of code\nExample of usage\nWhat it does\n\n\n\n\nreadr\nread_csv()\ndf &lt;- read_csv(\"http://jhudatascience.org/intro_to_R_class/data/Youth_Tobacco_Survey_YTS_Data.csv\")\nReads in a TSV file from a specified file path. This function can be tailored to read in other common types of files. i.e. read_csv(), read_rds(), etc.\n\n\nTSA\nspec()|spec(mtcars)| Gives specification of column types| |readxl| [read_excel()](https://www.rdocumentation.org/packages/readxl/versions/1.3.1/topics/read_excel)|read_excel(“dataset.xlsx”)| Read in an excel file.| | BaseR| [getwd()](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/getwd)|getwd()| Finds the current working directory.| | BaseR| [setwd()](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/getwd)|setwd(“Desktop”)`\nChanges the current working directory."
+  },
+  {
+    "objectID": "index.html#learning-bbjectives",
+    "href": "index.html#learning-bbjectives",
+    "title": "R for Bioinformatics",
+    "section": "Learning bbjectives",
+    "text": "Learning bbjectives\n\nUnderstand the fundamentals of bioinformatics and its application in biological research.\nGain a solid foundation in R programming, including data structures, control flow, and functions.\nLearn data manipulation techniques specific to bioinformatics, such as working with DNA sequences and protein structures.\nGain hands-on experience by working with real-world bioinformatics datasets and applying R to extract valuable information.\nUnderstand the importance of reproducibility and best practices in bioinformatics research using R.\nFeel confident in applying R for basic bioinformatics tasks and be ready to explore more advanced topics in the field."
+  },
+  {
+    "objectID": "index.html#why-r",
+    "href": "index.html#why-r",
+    "title": "R for Bioinformatics",
+    "section": "Why R?",
+    "text": "Why R?\n\nR is a programming and statistical language.\nR is used for data Analysis and Visualization.\nR is simple and easy to learn, read and write.\nR is an example of a FLOSS (Free Libre and Open Source Software) where one can freely distribute copies of this software, read its source code, modify it, etc."
+  },
+  {
+    "objectID": "index.html#useful-resources-for-learning-r",
+    "href": "index.html#useful-resources-for-learning-r",
+    "title": "R for Bioinformatics",
+    "section": "Useful resources for learning R",
+    "text": "Useful resources for learning R\n\nDataCamp: interactive online lessons in R.\n\nSome of the courses are free (particularly community-written lessons like the one you’ll do today), but for paid courses, DataCamp costs about 300 SEK / mo.\n\nRStudio Cheat Sheets: Very helpful 1-2 page overviews of common tasks and packages in R.\nQuick-R: Website with short example-driven overviews of R functionality.\nStackOverflow: Part of the Stack Exchange network, StackOverflow is a Q&A community website for people who work in programming. Tons of incredibly good R users and developers interact on StackExchange, so it’s a great place to search for answers to your questions.\nR-Bloggers: Blog aggregagator for posts about R. Great place to learn really cool things you can do in R.\nR for Data Science: Online version of the book by Hadley Wickham, who has written many of the best packages for R, including the Tidyverse, which we will cover."
+  },
+  {
+    "objectID": "index.html#recording-of-classes",
+    "href": "index.html#recording-of-classes",
+    "title": "R for Bioinformatics",
+    "section": "Recording of classes",
+    "text": "Recording of classes\nClass lectures will be recorded automatically using cloud. The links will be posted to CHIRAL Classes when they are available."
+  },
+  {
+    "objectID": "index.html#is-this-course-for-me",
+    "href": "index.html#is-this-course-for-me",
+    "title": "R for Bioinformatics",
+    "section": "Is this course for me?",
+    "text": "Is this course for me?\nIf your answer to any of the following questions is “yes”, then this is the right workshop for you.\n\nDo you make summary tables in R (data, survey data, regression models, time-to-event data, adverse event reports)?\nDo you want your workflow to be reproducible?\nAre you often frustrated with the immense amount of code required to create great-looking tables in R?\n\nThe workshop is designed for those with some experience in R. It will be expected that you can perform basic data manipulation. Experience with the {tidyverse} and the %&gt;% operator is a plus, but not required."
+  },
+  {
+    "objectID": "prework.html#prework",
+    "href": "prework.html#prework",
+    "title": "Preparation",
+    "section": "",
+    "text": "Before attending the workshop please have the following installed and configured on your machine.\n\nRecent version of R\nRecent version of RStudio\nMost recent release of the Bioconductor and other packages used in courses\n\nInstall the latest release of R, then get the latest version of Bioconductor by starting R and entering the commands.\n\nif (!require(\"BiocManager\", quietly = TRUE))\n    install.packages(\"BiocManager\")\nBiocManager::install(version = \"3.16\")\n\n\nEnsure you can knit R markdown documents\n\nOpen RStudio and create a new Rmarkdown document\nSave the document and check you are able to knit it."
+  },
+  {
+    "objectID": "prework.html#install-bioconductor-packages",
+    "href": "prework.html#install-bioconductor-packages",
+    "title": "Prework",
+    "section": "Install Bioconductor Packages",
+    "text": "Install Bioconductor Packages\n\nif (!require(\"BiocManager\", quietly = TRUE))\n    install.packages(\"BiocManager\")\nBiocManager::install()\n\nInstall specific packages, e.g., “GenomicFeatures” and “AnnotationDbi”, with\n\nBiocManager::install(c(\"GenomicFeatures\", \"AnnotationDbi\"))\n\nThe install() function (in the BiocManager package) has arguments that change its default behavior; type ?install for further help.\nPosit cloud is free of charge for personal users, yet you need to sign up for a new user account and have internet connection."
+  },
+  {
+    "objectID": "index.html#zoom-working-virtually",
+    "href": "index.html#zoom-working-virtually",
+    "title": "R for Bioinformatics",
+    "section": "Zoom + Working Virtually",
+    "text": "Zoom + Working Virtually\n\nZoom link will be emailed to students\nClass sessions will be recorded and later posted\nWe will have lectures as well as breakout room sessions to work on labs\nPlease be aware that there is the option to use closed captioning"
+  },
+  {
+    "objectID": "q-and-a.html#faqs",
+    "href": "q-and-a.html#faqs",
+    "title": "Frequently Asked Questions (FAQs)",
+    "section": "",
+    "text": "Q: What is the level of proficiency in R programming language required for this course?\n\n\nA: Basic proficiency in R programming language is required for this course. However, the course will cover the basics of R programming language as well, so students who are not familiar with R can also take this course.\n\n\nQ: Is this course suitable for beginners in bioinformatics?\n\n\nA: Yes, this course is suitable for beginners in bioinformatics who have a basic understanding of molecular biology and genetics.\n\n\nQ: Do I need to have prior knowledge of statistics for this course?\n\n\nA: Yes, a basic understanding of statistics and probability theory is required for this course.\n\n\nQ: Can I take this course if I am not from a biological sciences background?\n\n\nA: Yes, this course can be taken by anyone who wants to learn R/Bioconductor for bioinformatics data analysis, regardless of their background.\n\n\nQ: What is the duration of the course?\n\n\nA: The duration of the course may vary depending on the institution offering the course, but typically ranges from several weeks to a few months.\n\n\nQ: Is this course available online?\n\n\nA: Yes, this course may be available online, depending on the institution offering the course.\n\n\nQ: Can I get a certificate after completing the course?\n\n\nA: Yes.\n\n\nQ: How can I apply the knowledge gained from this course to my research projects?\n\n\nA: The knowledge gained from this course can be applied to your research projects by using R/Bioconductor packages for bioinformatics data analysis. You can apply the techniques and methods learned in this course to your own data and research questions."
+  },
+  {
+    "objectID": "prework.html#packages",
+    "href": "prework.html#packages",
+    "title": "Prework",
+    "section": "Packages",
+    "text": "Packages\n\ninstall.packages('BiocManager')\nBiocManager::install('methods')\nBiocManager::install('rmarkdown')\nBiocManager::install('igraph')\nBiocManager::install('org.Hs.eg.db')\nBiocManager::install('RMariaDB')\nBiocManager::install('Rbowtie')\nBiocManager::install('parallel')\nBiocManager::install('QuasR')\nBiocManager::install('BSgenome')\nBiocManager::install('BSgenome.Mmusculus.UCSC.mm10')\nBiocManager::install('BSgenome.Hsapiens.UCSC.hg19')\nBiocManager::install('BSgenome.Hsapiens.UCSC.hg38')\nBiocManager::install('Biostrings')\nBiocManager::install('rtracklayer')\nBiocManager::install('ggplot2')\nBiocManager::install('GenomicRanges')\nBiocManager::install('ShortRead')\nBiocManager::install('Rsubread')\nBiocManager::install('Rsamtools')\nBiocManager::install('Rbowtie2')\nBiocManager::install('stringi')\nBiocManager::install('Rhisat2')\nBiocManager::install('R.utils')\nBiocManager::install('GenomicAlignments')\nBiocManager::install('basecallQC')\nBiocManager::install('TxDb.Mmusculus.UCSC.mm10.knownGene')\nBiocManager::install('TxDb.Hsapiens.UCSC.hg19.knownGene')\nBiocManager::install('Rfastp')\nBiocManager::install('TxDb.Hsapiens.UCSC.hg38.knownGene')\nBiocManager::install('knitr')\nBiocManager::install('testthat')\nBiocManager::install('yaml')"
   }
 ]

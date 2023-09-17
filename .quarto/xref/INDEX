@@ -97,5 +97,50 @@
   },
   "materials/slides/Day01/index.qmd": {
     "index.html": "a0ba261b"
+  },
+  "slides/Day01/00-intro.qmd": {
+    "00-intro.html": "afc47f20"
+  },
+  "slides/Day01/01-background.qmd": {
+    "01-background.html": "00326d13"
+  },
+  "slides/Day01/02-getting-started.qmd": {
+    "02-getting-started.html": "9e8a0972"
+  },
+  "slides/Day01/03-data-types.qmd": {
+    "03-data-types.html": "8010d368"
+  },
+  "slides/Day01/04-operators.qmd": {
+    "04-operators.html": "f0c952b5"
+  },
+  "slides/Day01/index.qmd": {
+    "index.html": "98c92fa4"
+  },
+  "slides/Day02/00-data-structures.qmd": {
+    "00-data-structures.html": "dfa015cc"
+  },
+  "slides/Day02/01-subsetting-robjects.qmd": {
+    "01-subsetting-robjects.html": "5f274a45"
+  },
+  "slides/Day02/02-control-flow.qmd": {
+    "02-control-flow.html": "6c67f83f"
+  },
+  "slides/Day02/03-functions.qmd": {
+    "03-functions.html": "ed29c551"
+  },
+  "slides/Day02/04-dates-and-times.qmd": {
+    "04-dates-and-times.html": "b4b9bcb6"
+  },
+  "slides/Day02/05-loop-functions.qmd": {
+    "05-loop-functions.html": "a5f9ec4e"
+  },
+  "slides/Day02/06-simulations.qmd": {
+    "06-simulations.html": "30ab10c8"
+  },
+  "slides/Day02/index.qmd": {
+    "index.html": "6a23d032"
+  },
+  "schedule.qmd": {
+    "schedule.html": "e587ef0b"
   }
 }

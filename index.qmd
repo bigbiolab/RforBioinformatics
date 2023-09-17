@@ -1,6 +1,6 @@
 ---
 pagetitle: "R for Bioinformatics"
-title: "R for Bioinformatics"
+title: "R for Bioinformatics (Cohort 02)"
 subtitle: "Learn to Analyze Genomics, Metagenomics, and Transcriptomics Data with R"
 editor: source
 ---
@@ -8,12 +8,12 @@ editor: source
 ------------------------------------------------------------------------
 🧑 Instructor: [Md. Jubayer Hossain](https://hossainlab.github.io/)
 
-🗓 July 20 - August 3, 2023 \| 9:00 pm - 11:00pm (Bangladesh Time)
+🗓 October 2, 2023 - October 15, 2023 \| 9:00 pm - 11:00pm (Bangladesh Time)
 
 🏨 Medium - Zoom/Google Meet
 
-<!-- 💥 **Register** with [Google Forms](https://forms.gle/hSH1ACSqDYYVsxie6) -->
-**Registration**: *Closed* 
+💥 **Register** with [Google Forms](https://forms.gle/ke8U9uYxXmtvsgtk7) 
+<!-- **Registration**: *Closed* -->
 
 <!-- 💥 **Registration Fee**: 1020 BDT (for students),1530BDT (for professionals) -->
 
@@ -52,23 +52,6 @@ Enjoy your learning experience, and good luck!
 -   R is used for data Analysis and Visualization.
 -   R is simple and easy to learn, read and write.
 -   R is an example of a FLOSS (Free Libre and Open Source Software) where one can freely distribute copies of this software, read its source code, modify it, etc.
-
-
-## Useful resources for learning R
-
-- **DataCamp:** interactive online lessons in R.
-
-    -   Some of the courses are free (particularly community-written lessons like the one you'll do today), but for paid courses, DataCamp costs about 300 SEK / mo.
-
--   **RStudio Cheat Sheets:** Very helpful 1-2 page overviews of common tasks and packages in R.
-
--   **Quick-R:** Website with short example-driven overviews of R functionality.
-
--   **StackOverflow:** Part of the Stack Exchange network, StackOverflow is a Q&A community website for people who work in programming. Tons of incredibly good R users and developers interact on StackExchange, so it's a great place to search for answers to your questions.
-
--   **R-Bloggers:** Blog aggregagator for posts about R. Great place to learn really cool things you can do in R.
-
--   **R for Data Science:** Online version of the book by Hadley Wickham, who has written many of the best packages for R, including the Tidyverse, which we will cover.
 
 
 ## Recording of classes
